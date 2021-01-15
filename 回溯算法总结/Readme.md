@@ -7,7 +7,7 @@ void backTrace(参数：开始的Index，数组等){
   
 } 
 
-<pre>
+</pre>
 
 
 ### 例题1:组合总和
@@ -57,5 +57,5 @@ class Solution {
     }
     
 }
-<pre>
+</pre>
 

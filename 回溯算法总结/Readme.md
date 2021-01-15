@@ -6,7 +6,6 @@
 void backTrace(参数：开始的Index，数组等){
   
 } 
-
 </pre>
 
 
@@ -27,7 +26,7 @@ candidates 中的数字可以无限制重复被选取。
   [2,2,3]
 ]
 
-<pre name="code" class="java">
+```Java
 class Solution {
     List<List<Integer>> lists=new ArrayList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
@@ -57,5 +56,8 @@ class Solution {
     }
     
 }
-</pre>
+```
+
+
+
 

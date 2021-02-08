@@ -2,7 +2,41 @@
 
 滑动窗口叫做「虫取法」，我觉得非常生动形象。因为滑动窗口的两个指针移动的过程和虫子爬动的过程非常像：前脚不动，把后脚移动过来；后脚不动，把前脚向前移动。
 
-分享一个**滑动窗口的模板**，能解决大多数的滑动窗口问题：
+分享俩个**滑动窗口的模板**，能解决大多数的滑动窗口问题，一般用第一个模板：
+```Java
+void slideWindow(String s, String t) {
+        HashMap<Character ,Integer> need=new HashMap<>();
+        HashMap<Character,Integer> window=new HashMap<>();
+        for(char c:t.toCharArray()){
+            need.put(c,need.getOrDefault(c,0)+1);
+        }
+        int left=0,right=0;
+        int valid=0;
+        while(right<s.length()){
+            // r 是将移入窗口的字符
+            char r=s.charAt(right);
+             // 右移窗口
+            right++;
+            
+            // 进行窗口内数据的一系列更新
+            
+            ...
+            
+           // 判断左侧窗口是否要收缩
+            while (window needs shrink) {
+                // l 是将移出窗口的字符
+                char l = s[left];
+                // 左移窗口
+                left++;
+                // 进行窗口内数据的一系列更新
+                
+                ...
+            }
+        
+        }
+    }
+
+```
 
 ```Java
 public int findSubArray(nums) {

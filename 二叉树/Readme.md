@@ -32,5 +32,14 @@ String traverse(TreeNode root) {
 ```
 我们用非数字的特殊符#表示空指针，并且用字符,分隔每个二叉树节点值，这属于**序列化二叉树的套路**了，不多说。
 
+### 二叉搜索树
+首先，BST 的特性大家应该都很熟悉了：
+
+1、对于 BST 的每一个节点node，左子树节点的值都比node的值要小，右子树节点的值都比node的值大。
+
+2、对于 BST 的每一个节点node，它的左侧子树和右侧子树都是 BST。
+
+从做算法题的角度来看 BST，除了它的定义，还有一个重要的性质：BST 的**中序遍历结果是有序的（升序）。**
+
 ## 题目链接
 [二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)

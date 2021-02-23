@@ -41,5 +41,7 @@ String traverse(TreeNode root) {
 
 从做算法题的角度来看 BST，除了它的定义，还有一个重要的性质：BST 的**中序遍历结果是有序的（升序）。**
 
+简单总结下吧，BST 相关的问题，要么利用 BST 左小右大的特性提升算法效率，要么利用中序遍历的特性满足题目的要求，也就这么些事儿吧。
+
 ## 题目链接
 [二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)

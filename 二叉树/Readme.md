@@ -10,6 +10,31 @@ void traverse(TreeNode root) {
     // 后序遍历
 }
 ```
+### 二叉树的层级遍历
+```Java
+void traverse(TreeNode root) {
+    if (root == null) return;
+    // 初始化队列，将 root 加入队列
+    Queue<TreeNode> q = new LinkedList<>();
+    q.offer(root);
+
+    while (!q.isEmpty()) {
+        TreeNode cur = q.poll();
+
+        /* 层级遍历代码位置 */
+        System.out.println(root.val);
+        /*****************/
+
+        if (cur.left != null) {
+            q.offer(cur.left);
+        }
+
+        if (cur.right != null) {
+            q.offer(cur.right);
+        }
+    }
+}
+```
 
 ### 二叉树序列化
 现在，明确了要用后序遍历，那应该怎么描述一棵二叉树的模样呢？我们前文 序列化和反序列化二叉树 其实写过了，二叉树的前序/中序/后序遍历结果可以描述二叉树的结构。

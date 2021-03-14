@@ -10,4 +10,4 @@
 - 新建一个数值：new int[]{ , , }; **需要用大括号**
 - 数组排序是Arrays.sort(nums)，List排序是collection.sort();
 - 把数组转换为List需要用到API：Arrays.asList()
-- 
+- 数组添加值不能用add方法，而是直接等号赋值。

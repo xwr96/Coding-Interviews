@@ -23,3 +23,56 @@ int[] twoSum(int[] nums, int target) {
     return new int[]{-1, -1};
 }
 ```
+## nSum问题的解法
+nSum问题可以转化为两数之和、三数之……。
+
+```Java
+class Solution {
+    List<List<Integer>> ans;
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        ans = new LinkedList<List<Integer>> ();
+        // i的终止条件是还剩不到三个数
+        for (int i = 0; i < nums.length - 3; ++i) {
+            // 去重
+            if ((i >= 1) && nums[i] == nums[i - 1]) continue;
+            // 把当前选中的数用来满足target了 所以传入下层的target要减去该数
+            threeSum(nums, i + 1, target - nums[i] );
+        }
+
+        return ans;
+    }
+
+    private void threeSum(int[] nums, int start, int target) {
+        // i的终止条件是还剩不到两个数
+        for (int i = start; i < nums.length - 2; i++) {
+            // 去重
+            if ((i > start) && nums[i] == nums[i - 1] ) continue;
+            // start是起始点 则start - 1就是之前选择的第一个数下标
+            // i是现在选的数 即第二个数的下标
+            twoSum(nums, i + 1, target - nums[i], i, start - 1);
+        }
+    }
+
+    private void twoSum(int[] nums, int start, int target, int cIndex, int dIndex) {
+        int p1 = start;
+        int p2 = nums.length - 1;
+        while (p1 < p2) {
+            int sum = nums[p1] + nums[p2];
+            if (sum == target) {
+                // cIndex 我们选的第一个数的下标 dIndex 同理既是选择的第二个数的下标
+                // 加入答案集
+                ans.add(Arrays.asList(nums[p1], nums[p2], nums[cIndex], nums[dIndex]));
+                p1++;
+                p2--;
+                while (p1 < p2 && nums[p1] == nums[p1 - 1]) ++p1;//去重
+                while (p1 < p2 && nums[p2] == nums[p2 + 1]) --p2;
+            } else if (sum < target) {
+                p1++;
+            } else {
+                p2--;
+            }
+        }
+    }
+}
+```

@@ -11,3 +11,4 @@
 - 数组排序是Arrays.sort(nums)，List排序是collection.sort();
 - 把数组转换为List需要用到API：Arrays.asList()
 - 数组添加值不能用add方法，而是直接等号赋值。
+- String类型只能通过"+"号来添加新的字符串，因为string类型是不可变类型。如果想要通过append()方法就需要把**String类型变为StringBuilder类型**，再通过方法 **.toString()** 转换为string类型。

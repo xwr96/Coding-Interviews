@@ -1,5 +1,20 @@
 # Coding-Interviews
 牛客网《剑指offer》答案和刷题心得
+## 需要自己创建数据结构或是数据类型时的技巧
+**要是构造函数有参数时，直接在类名外面创造对象，然后在参数里面直接`this.xx=xx`**
+
+要是类没有参数时，直接在类外面创建对象，然后在里面调用就行。
+
+```java
+Map<Integer,Integer> dict;
+    List<Integer> list;
+    Random r=new Random();
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        dict=new HashMap<>();
+        list=new ArrayList<>();
+    }
+```
 
 
 ## Java运算符优先级

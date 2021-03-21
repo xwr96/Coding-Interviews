@@ -66,20 +66,22 @@ int left_bound(int[] nums, int target) {
 ## 寻找右侧边界的二分搜索
 ```Java
 int right_bound(int[] nums, int target) {
-    if (nums.length == 0) return -1;
-    int left = 0, right = nums.length;
-
-    while (left < right) {
-        int mid = (left + right) / 2;
-        if (nums[mid] == target) {
-            left = mid + 1; // 注意
-        } else if (nums[mid] < target) {
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
             left = mid + 1;
         } else if (nums[mid] > target) {
-            right = mid;
+            right = mid - 1;
+        } else if (nums[mid] == target) {
+            // 别返回，锁定右侧边界
+            left = mid + 1;
         }
     }
-    return right - 1; // 注意,其实left和right都行，因为while 循环的终止条件是 left == right
+    // 最后要检查 right 越界的情况
+    if (right < 0 || nums[right] != target)
+        return -1;
+    return right;
 }
 ```
 

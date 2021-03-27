@@ -85,3 +85,5 @@ int right_bound(int[] nums, int target) {
 }
 ```
 
+## 遇到**最大化最小值或最小化最大值**，就是二分查找
+[410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)

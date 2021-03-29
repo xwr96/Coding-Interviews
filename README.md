@@ -50,3 +50,16 @@ add()、subtract()、mutiply()、divide()
 var a = [2,3,2,4,4]
 
 2 ^ 3 ^ 2 ^ 4 ^ 4等价于 2 ^ 2 ^ 4 ^ 4 ^ 3 => 0 ^ 0 ^3 => 3（对应LeetCode中136：只出现一次的数字）
+
+### 进制运算的本质代码
+```Java
+ public int reverseBits(int n) { //n表示无符号32位进制数
+        int res=0;
+        for(int i=0;i<32;i++){
+            res<<=1;
+            res+=1&n;
+            n>>=1;
+        }
+        return res;
+    }
+```

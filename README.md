@@ -40,6 +40,16 @@ Map<Integer,Integer> dict;
 new BigInteger()
 add()、subtract()、mutiply()、divide()
 ```
+- 二维数组二分查找时，怎么转换为[][]
+```Java
+int begin, mid, end;
+begin = mid = 0;
+int len1 = matrix.length, len2 = matrix[0].length;
+end = len1 * len2 - 1;
+while (begin < end) {
+    mid = (begin + end) / 2;
+    if (matrix[mid / len2][mid % len2]) // 二维数组展开之后再还原的坐标写法
+ ```           
 ### 异或规律
 交换律：a ^ b ^ c <=> a ^ c ^ b
 

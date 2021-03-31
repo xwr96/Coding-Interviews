@@ -35,6 +35,8 @@ Map<Integer,Integer> dict;
 ![图片](https://labuladong.gitee.io/algo/pictures/%E4%BD%8D%E6%93%8D%E4%BD%9C/1.png)
 - **不需要额外空间的方法，就往位运算上想**
 - java 对于找出连续数出现的各种奇怪的场景，数组桶永远是好的选择,即重新再new一个数组。
+- isDigit() 方法用于判断指定字符是否为数字。isLetter() 方法用于判断指定字符是否为字母。`Character.isLetter('c')`
+
 - 如果数字很大，即可以用**BigInteger**这个大数相乘的类。加减乘除可以调用方法：
 ```Java
 new BigInteger()

@@ -128,3 +128,130 @@ void heapSort(int[] arr,int n){
 ```
 
 ## 冒泡排序
+稳定，平均/最坏时间复杂度 O(n²)，元素基本有序时最好时间复杂度 O(n)，空间复杂度 O(1)。
+
+比较相邻的元素，如果第一个比第二个大就进行交换，对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对，每一轮排序后末尾元素都是有序的，针对 n 个元素重复以上步骤 n -1 次排序完毕。
+```Java
+public void bubbleSort(int[] nums){
+    for(int i=0;i<nums.length;i++){
+        for(int idex=0;index<nums.length-1-i;index++){
+            if (nums[index] > nums[index + 1])
+                swap(nums, index, index + 1);//交换数据
+        }
+    }
+}
+```
+当序列已经有序时仍会进行不必要的比较，可以设置一个标志记录是否有元素交换，如果没有直接结束比较。
+```Java
+public void betterBubbleSort(int[] nums) {
+    boolean swap;
+    for (int i = 0; i < nums.length - 1; i++) {
+        swap = true;
+        for (int index = 0; index < nums.length - 1 - i; index++) {
+            if (nums[index] > nums[index + 1]) {
+                swap(nums, index ,index + 1);
+                swap = false;
+            }
+        }
+        if (swap) break;
+    }
+}
+```
+
+## 快速排序
+是对冒泡排序的一种改进，不稳定，平均/最好时间复杂度 O(nlogn)，元素基本有序时最坏时间复杂度 O(n²)，空间复杂度 O(logn)。
+
+首先选择一个基准元素，通过一趟排序将要排序的数据分割成独立的两部分，一部分全部小于等于基准元素，一部分全部大于等于基准元素，再按此方法递归对这两部分数据进行快速排序。
+
+快速排序的一次划分从两头交替搜索，直到 low 和 high 指针重合，一趟时间复杂度 O(n)，整个算法的时间复杂度与划分趟数有关。
+
+最好情况是每次划分选择的中间数恰好将当前序列等分，经过 log(n) 趟划分便可得到长度为 1 的子表，这样时间复杂度 O(nlogn)。
+
+最坏情况是每次所选中间数是当前序列中的最大或最小元素，这使每次划分所得子表其中一个为空表 ，这样长度为 n 的数据表需要 n 趟划分，整个排序时间复杂度 O(n²)。
+
+```Java
+    private static void quickSort(int[] arr, int low, int high) {
+
+		if (low < high) {
+			// 找寻基准数据的正确索引
+			int index = getIndex(arr, low, high);
+
+			// 进行迭代对index之前和之后的数组进行相同的操作使整个数组变成有序
+			quickSort(arr, low, index - 1);
+			quickSort(arr, index + 1, high);
+		}
+	}
+
+	private static int getIndex(int[] arr, int low, int high) {
+		// 基准数据
+		int tmp = arr[low];
+		while (low < high) {
+			// 当队尾的元素大于等于基准数据时,向前挪动high指针
+			while (low < high && arr[high] >= tmp) {
+				high--;
+			}
+			// 如果队尾元素小于tmp了,需要将其赋值给low
+			arr[low] = arr[high];
+			// 当队首元素小于等于tmp时,向前挪动low指针
+			while (low < high && arr[low] <= tmp) {
+				low++;
+			}
+			// 当队首元素大于tmp时,需要将其赋值给high
+			arr[high] = arr[low];
+
+		}
+		// 跳出循环时low和high相等,此时的low或high就是tmp的正确索引位置
+		// 由原理部分可以很清楚的知道low位置的值并不是tmp,所以需要将tmp赋值给arr[low]
+		arr[low] = tmp;
+		return low; // 返回tmp的正确位置
+	}
+
+```
+## 归并排序
+
+归并排序基于归并操作，是一种稳定的排序算法，任何情况时间复杂度都为 O(nlogn)，空间复杂度为 O(n)。
+
+基本原理：应用分治法将待排序序列分成两部分，然后对两部分分别递归排序，最后进行合并，使用一个辅助空间并设定两个指针分别指向两个有序序列的起始元素，将指针对应的较小元素添加到辅助空间，重复该步骤到某一序列到达末尾，然后将另一序列剩余元素合并到辅助空间末尾。
+
+适用场景：**数据量大且对稳定性有要求的情况。**
+```Java
+int[] help;
+
+public void mergeSort(int[] arr) {
+    int[] help = new int[arr.length];
+    sort(arr, 0, arr.length - 1);
+}
+
+public void sort(int[] arr, int start, int end) {
+    if (start == end) return;
+    int mid = start + (end - start) / 2;
+    sort(arr, start, mid);
+    sort(arr, mid + 1, end);
+    merge(arr, start, mid, end);
+}
+
+public void merge(int[] arr, int start, int mid, int end) {
+    if (end + 1 - start >= 0) System.arraycopy(arr, start, help, start, end + 1 - start);
+    int p = start;
+    int q = mid + 1;
+    int index = start;
+    while (p <= mid && q <= end) {
+        if (help[p] < help[q]) 
+            arr[index++] = help[p++];
+        else 
+            arr[index++] = help[q++];
+    }
+    while (p <= mid) arr[index++] = help[p++];
+    while (q <= end) arr[index++] = help[q++];
+}
+```
+## 排序算法选择
+
+数据量规模较小，考虑直接插入或直接选择。当元素分布有序时直接插入将大大减少比较和移动记录的次数，如果不要求稳定性，可以使用直接选择，效率略高于直接插入。
+
+数据量规模中等，选择希尔排序。
+
+数据量规模较大，考虑堆排序（元素分布接近正序或逆序）、快速排序（元素分布随机）和归并排序（稳定性）。
+
+一般不使用冒泡。
+

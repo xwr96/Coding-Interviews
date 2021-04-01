@@ -87,51 +87,44 @@ public void selectSort(int[] nums) {
 将待排序记录看作完全二叉树，可以建立大顶堆或小顶堆，大顶堆中每个节点的值都不小于它的子节点值，小顶堆中每个节点的值都不大于它的子节点值。
 
 以大顶堆为例，在建堆时首先将最后一个节点作为当前节点，如果当前节点存在父节点且值大于父节点，就将当前节点和父节点交换。在移除时首先暂存根节点的值，然后用最后一个节点代替根节点并作为当前节点，如果当前节点存在子节点且值小于子节点，就将其与值较大的子节点进行交换，调整完堆后返回暂存的值。
+#### 建立堆函数
 ```Java
-public void add(int[] nums, int i, int num){
-    nums[i] = num;
-    int curIndex = i;
-    while (curIndex > 0) {
-        int parentIndex = (curIndex - 1) / 2;
-        if (nums[parentIndex] < nums[curIndex]) 
-            swap(nums, parentIndex, curIndex);
-        else break;
-        curIndex = parentIndex;
+void heapify(int[] arr[],int n,int i){
+    int largest=i; // 将最大元素设置为堆顶元素
+    int l=(2*i)+1;
+    int r=(2*i)+2;
+    // 如果 left 比 root 大的话
+    if(l<n && arr[l]>nums[largest]){
+        largest=l;
     }
+    // 如果 right 比 root 大的话
+    if(r<n && arr[r]>nums[largest]{
+        largest=r;
+    }
+    if (largest != i) 
+    { 
+        swap(arr[i], arr[largest]); 
+  
+        // 递归地定义子堆
+        heapify(arr, n, largest); 
+    } 
 }
+```
+堆排序的方法如下，把最大堆堆顶的最大数取出，将剩余的堆继续调整为最大堆，再次将堆顶的最大数取出，这个过程持续到剩余数只有一个时结束。
 
-public int remove(int[] nums, int size){
-    int result = nums[0];
-    nums[0] = nums[size - 1];
-    int curIndex = 0;
-    while (true) {
-        int leftIndex = curIndex * 2 + 1;
-        int rightIndex = curIndex * 2 + 2;
-        if (leftIndex >= size) break;
-        int maxIndex = leftIndex;
-        if (rightIndex < size && nums[maxIndex] < nums[rightIndex])
-            maxIndex = rightIndex;
-        if (nums[curIndex] < nums[maxIndex])
-            swap(nums, curIndex, maxIndex);
-        else break;
-        curIndex = maxIndex;
-    }
-    return result;
-}
-```
-当序列已经有序时仍会进行不必要的比较，可以设置一个标志记录是否有元素交换，如果没有直接结束比较。
+堆排序函数：
 ```Java
-public void betterBubbleSort(int[] nums) {
-    boolean swap;
-    for (int i = 0; i < nums.length - 1; i++) {
-        swap = true;
-        for (int index = 0; index < nums.length - 1 - i; index++) {
-            if (nums[index] > nums[index + 1]) {
-                swap(nums, index ,index + 1);
-                swap = false;
-            }
-        }
-        if (swap) break;
+void heapSort(int[] arr,int n){
+    //建立堆
+    for(int i=(n-1)/2;i>=0;i--){
+        heapify(arr,n,i);
+    }
+    // 一个个从堆顶取出元素
+    for(int i=n-1;i>=0;i--){
+        swap(arr[0],arr[i]);
+        heapify(arr,i,0);
     }
 }
 ```
+
+## 冒泡排序

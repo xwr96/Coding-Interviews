@@ -215,7 +215,7 @@ public void betterBubbleSort(int[] nums) {
 
 适用场景：**数据量大且对稳定性有要求的情况。**
 ```Java
-int[] help;
+int[] help; //辅助数组，拷贝原数组到辅助数组
 
 public void mergeSort(int[] arr) {
     int[] help = new int[arr.length];
@@ -231,18 +231,22 @@ public void sort(int[] arr, int start, int end) {
 }
 
 public void merge(int[] arr, int start, int mid, int end) {
-    if (end + 1 - start >= 0) System.arraycopy(arr, start, help, start, end + 1 - start);
+    if (end + 1 - start >= 0) System.arraycopy(arr, start, help, start, end + 1 - start); //分治完之后开始慢慢合并-> 第一次合并 tempLeft = 0 , right = 1 //第二次： tempLeft = 2 right = 3 // 最后一次 tempLeft = 0 right = arr.length-1
     int p = start;
     int q = mid + 1;
-    int index = start;
+    int index = start; //指向help数组的当前索引
     while (p <= mid && q <= end) {
+    // 如果左边的有序序列的当前元素，小于等于右边有序序列的当前元素
+    // 即将左边的当前元素，填充到 arr数组
+    // 然后 index++, p++
         if (help[p] < help[q]) 
             arr[index++] = help[p++];
-        else 
+        else // 反之,将右边有序序列的当前元素，填充到arr数组
             arr[index++] = help[q++];
     }
-    while (p <= mid) arr[index++] = help[p++];
-    while (q <= end) arr[index++] = help[q++];
+    // 把有剩余数据的一边的数据依次全部填充到arr
+    while (p <= mid) arr[index++] = help[p++]; // 左边的有序序列还有剩余的元素，就全部填充到arr
+    while (q <= end) arr[index++] = help[q++]; // 右边的有序序列还有剩余的元素，就全部填充到arr
 }
 ```
 ## 排序算法选择

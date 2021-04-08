@@ -78,3 +78,11 @@ var a = [2,3,2,4,4]
         return res;
     }
 ```
+
+### 遍历HashMap里的key和value
+```Java
+for (Map.Entry<T, T> entry : map.entrySet()) {
+   System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+  }
+  
+```

@@ -54,7 +54,11 @@ while (begin < end) {
  ```           
  - 表达式的计算一般可以借助数据结构「栈」完成，特别是带有括号的表达式。我们将暂时还不能确定的数据存入栈，确定了优先级最高以后，一旦可以计算出结果，我们就把数据从栈里取出，整个过程恰好符合了「后进先出」的规律。求解没有括号的中缀表达式的时候，可以用一句顺口溜来概括：**遇到乘除立即算，遇到加减先入栈。**
 
- 
+- 二维数组得到一维数组
+```Java
+int[][] intvs;
+int[] intv = intvs[i];
+```
 ### 异或规律
 交换律：a ^ b ^ c <=> a ^ c ^ b
 
@@ -85,4 +89,27 @@ for (Map.Entry<T, T> entry : map.entrySet()) {
    System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
   }
   
+```
+
+### Arrays.sort重新排序(改为o1升序排序，o2降序排序)
+```java
+Arrays.sort(intervals, new Comparator<int[]>() {
+      @Override
+      public int compare(int[] o1, int[] o2) {
+        // Sort by start point.
+        // If two intervals share the same start point,
+        // put the longer one to be the first.
+        return o1[0] == o2[0] ? o2[1] - o1[1]: o1[0] - o2[0];
+      }
+    });
+
+```
+或者写成lambda表达式
+```Java
+Arrays.sort(intvs, (a, b) -> {
+            if (a[0] == b[0]) {
+                return b[1] - a[1];
+            }
+            return a[0] - b[0]; 
+        });
 ```

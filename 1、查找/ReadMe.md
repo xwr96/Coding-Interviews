@@ -84,6 +84,7 @@ int right_bound(int[] nums, int target) {
     return right;
 }
 ```
+- 如果是旋转排序数组的话一般是比较nums[mid]和nums[right]两个数谁大
 
 ## 遇到**最大化最小值或最小化最大值**，就是二分查找
 [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/)

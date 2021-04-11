@@ -113,3 +113,16 @@ Arrays.sort(intvs, (a, b) -> {
             return a[0] - b[0]; 
         });
 ```
+
+## 遇到重复元素去除重复元素
+用双指针
+```java
+int p=0,q=1;
+        while(q<n){
+            if(nums[p]!=nums[q]){
+                nums[p+1]=nums[q];
+                p++;
+            }
+            q++;
+        }
+```

@@ -15,8 +15,7 @@ MyBatis中使用parameterType向SQL语句传参，parameterType后的类型可�
 
 ${} 
 　　　　$将传入的数据直接显示生成在sql中。
-
-　　　　　　例如：order by #{parameterName} //或取Map中的value#{Key}也是一样操作。
+　　　　　　例如：order by ${parameterName} //或取Map中的value${Key}也是一样操作。
 
 　　　　　　假设传入参数是“Smith”
 
@@ -26,7 +25,8 @@ ${} 
 #{}方式能够很大程度防止sql注入，${}方式无法防止Sql注入。
 ${}方式一般用于传入数据库对象，例如传入表名。
 从安全性上考虑，能使用#尽量使用#来传参，因为这样可以有效防止SQL注入的问题。
-重点
+
+#### 重点
 　　　MyBatis排序时使用order by 动态参数时需要注意，用$而不是#！
 
 　　　　例如：ORDER BY ${columnName} //这里MyBatis不会修改或转义字符串，可实现动态传入排序。

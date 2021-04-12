@@ -60,6 +60,18 @@ int[][] intvs;
 int[] intv = intvs[i];
 ```
 - 看到要求两个整数 x,y 如何**拼接得到结果更大时**，就想到先转字符串，然后**比较 x+y 和 y+x**。上述排序规则满足传递性，两个元素比较就可以确定它们在排序以后的相对位置关系。
+- **compareToIgnoreCase() 方法用于按字典顺序比较两个字符串，不考虑大小写**。
+```Java
+public class Test {
+
+    public static void main(String args[]) {
+        String str1 = "STRINGS";
+        String str2 = "Strings";
+        int result = str1.compareToIgnoreCase( str2 );
+        System.out.println(result);  //结果为0
+    }
+}
+```
 ### 异或规律
 交换律：a ^ b ^ c <=> a ^ c ^ b
 

@@ -72,6 +72,7 @@ public class Test {
     }
 }
 ```
+- 栈结构的建立：`Deque<Character> stack=new LinkedList<>();`
 ### 异或规律
 交换律：a ^ b ^ c <=> a ^ c ^ b
 

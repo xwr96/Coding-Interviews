@@ -11,5 +11,5 @@
 因此状态转移方程为：
 ```Java
 dp[i][j]=min(dp[i+1][j],dp[i][j-1]) //s[i]!=s[j]
-dp[i][j]=min(dp[i][j],dp[i+1][j-1] //s[i]==s[j]
+dp[i][j]=dp[i+1][j-1] //s[i]==s[j]
 ```

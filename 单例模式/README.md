@@ -106,3 +106,71 @@ instance =memory;     //3：设置instance指向刚分配的内存地址
 
 
 如此在线程B看来，instance对象的引用要么指向null，要么指向一个初始化完毕的Instance，而不会出现某个中间态，保证了安全。
+
+
+饿汉式：在类加载时就初始化创建单例对象，线程安全，但不管是否使用都创建对象可能会浪费内存。
+```java
+public class HungrySingleton {
+    private HungrySingleton(){}
+
+    private static HungrySingleton instance = new HungrySingleton();
+
+    public static HungrySingleton getInstance() {
+        return instance;
+    }
+}
+```
+懒汉式：在外部调用时才会加载，线程不安全，可以加锁保证线程安全但效率低。
+```java
+public class LazySingleton {
+    private LazySingleton(){}
+
+    private static LazySingleton instance;
+
+    public static LazySingleton getInstance() {
+        if(instance == null) {
+            instance = new LazySingleton();
+        }
+        return instance;
+    }
+}
+```
+双重检查锁：使用 volatile 以及多重检查来减小锁范围，提升效率。
+```Java
+public class DoubleCheckSingleton {
+    private DoubleCheckSingleton(){}
+
+    private volatile static DoubleCheckSingleton instance;
+
+    public static DoubleCheckSingleton getInstance() {
+        if(instance == null) {
+            synchronized (DoubleCheckSingleton.class) {
+                if (instance == null) {
+                    instance = new DoubleCheckSingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+静态内部类：同时解决饿汉式的内存浪费问题和懒汉式的线程安全问题。
+```Java
+public class StaticSingleton {
+    private StaticSingleton(){}
+
+    public static StaticSingleton getInstance() {
+        return StaticClass.instance;
+    }
+
+    private static class StaticClass {
+        private static final StaticSingleton instance = new StaticSingleton();
+    }
+}
+```
+枚举：《Effective Java》提倡的方式，不仅能避免线程安全问题，还能防止反序列化重新创建新的对象，绝对防止多次实例化，也能防止反射破解单例的问题。
+```Java
+public enum EnumSingleton {
+    INSTANCE;
+}
+```

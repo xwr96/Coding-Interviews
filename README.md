@@ -141,3 +141,16 @@ int p=0,q=1;
             q++;
         }
 ```
+## 求进制的模板。转换成几进制，就先求余几，然后再除以几，最后再倒序输出
+```Java
+List<Integer> list=new ArrayList<>();
+        while(n!=0){
+            list.add(n%k);
+            n/=k;
+        }
+        int res=0;
+        for(int i=list.size()-1;i>=0;i--){
+            list.get(i);
+        }
+        
+```

@@ -1,5 +1,7 @@
 # Coding-Interviews
 牛客网《剑指offer》答案和刷题心得
+**最新内容都更新在gitee中，欢迎star！**
+#### 地址：[gitee地址](https://gitee.com/xwr96/Coding-Interviews)
 ## 需要自己创建数据结构或是数据类型时的技巧
 **要是构造函数有参数时，直接在类名外面创造对象，然后在参数里面直接`this.xx=xx`**
 
